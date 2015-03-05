@@ -104,7 +104,7 @@ bool Game::checkGameOver()
 {
 	for each(GenericEnemy* enemy in this->enemies)
 	{
-		short endZone = ConfigurationManager::getScreenHeight() * 3 / 4;
+		short endZone = ConfigurationManager::getScreenHeight() * 3 / 4 - enemy->getHeight();
 		if (enemy->getYPos() >= endZone)
 		{
 			return true;
@@ -115,8 +115,6 @@ bool Game::checkGameOver()
 
 void Game::checkKills()
 {
-	//Doesn't handle one blast hitting multiple enemies
-
 	for (int blastIndex = 0; blastIndex < this->player->getWaterBlasts().size(); blastIndex++)
 	{
 		WaterBlast* blast = this->player->getWaterBlasts().at(blastIndex);
