@@ -69,7 +69,12 @@ void Window::drawEnemy(GenericEnemy* enemy)
 
 void Window::drawBackground()
 {
-	SDL_RenderCopy(this->renderer, this->background, NULL, NULL);
+	SDL_Rect* background = new SDL_Rect();
+	background->x = 0;
+	background->y = 0;
+	background->w = this->winWidth;
+	background->h = this->winHeight;
+	SDL_RenderCopy(this->renderer, this->background, NULL, background);
 }
 
 void Window::drawGUI(unsigned short score)
