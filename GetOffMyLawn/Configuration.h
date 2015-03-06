@@ -1,5 +1,5 @@
 #pragma once
-class ConfigurationManager
+class Configuration
 {
 public:
 	static unsigned short getScreenWidth();
