@@ -26,7 +26,7 @@ void Player::moveLeft()
 
 void Player::moveRight()
 {
-	if (this->getXPos() < ConfigurationManager::getScreenWidth() - (this->getWidth() + 16))
+	if (this->getXPos() < Configuration::getScreenWidth() - (this->getWidth() + 16))
 	{
 		this->setXPos(this->getXPos() + 8);
 		this->animState = AnimState::MOVING;
