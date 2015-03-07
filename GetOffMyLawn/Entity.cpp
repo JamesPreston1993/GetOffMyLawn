@@ -26,7 +26,8 @@ short Entity::getXPos()
 
 void Entity::setXPos(const short xPos)
 {
-	this->xPos = xPos;
+	if (xPos >= 0 && xPos <= Configuration::getScreenWidth() - this->width)
+		this->xPos = xPos;
 }
 
 short Entity::getYPos()
@@ -79,7 +80,7 @@ void Entity::draw(SDL_Renderer* renderer, SDL_Texture* texture)
 	{
 		// Draw the shadow
 		sourceRect->x = 0;
-		sourceRect->y = 6 * ConfigurationManager::getSpriteHeight();
+		sourceRect->y = 6 * Configuration::getSpriteHeight();
 		sourceRect->w = this->getWidth();
 		sourceRect->h = 48;
 
@@ -92,10 +93,10 @@ void Entity::draw(SDL_Renderer* renderer, SDL_Texture* texture)
 	}
 
 	// Draw the entity
-	sourceRect->x = (SDL_GetTicks() / 500 % 2) * ConfigurationManager::getSpriteWidth();
-	sourceRect->y = this->spriteID * ConfigurationManager::getSpriteHeight();
-	sourceRect->w = ConfigurationManager::getSpriteWidth();
-	sourceRect->h = ConfigurationManager::getSpriteHeight();
+	sourceRect->x = (SDL_GetTicks() / 500 % 2) * Configuration::getSpriteWidth();
+	sourceRect->y = this->spriteID * Configuration::getSpriteHeight();
+	sourceRect->w = Configuration::getSpriteWidth();
+	sourceRect->h = Configuration::getSpriteHeight();
 
 	destRect->x = this->getXPos();
 	destRect->y = this->getYPos();
