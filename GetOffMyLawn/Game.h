@@ -4,7 +4,7 @@
 #include "Dog.h"
 #include "Player.h"
 #include "EnemyGenerator.h"
-#include "ConfigurationManager.h"
+#include "Configuration.h"
 #include <vector>
 
 using std::vector;
