@@ -1,6 +1,6 @@
 #pragma once
 #include <SDL.h>
-#include "ConfigurationManager.h"
+#include "Configuration.h"
 
 class Entity
 {
