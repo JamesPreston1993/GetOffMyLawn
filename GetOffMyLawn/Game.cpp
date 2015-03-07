@@ -1,16 +1,14 @@
 #include "Game.h"
 
-#include <iostream>
-
 Game::Game()
 {
 	this->isRunning = true;
-	this->window = new Window(ConfigurationManager::getScreenWidth(), ConfigurationManager::getScreenHeight());
+	this->window = new Window(Configuration::getScreenWidth(), Configuration::getScreenHeight());
 
 	this->score = 0;
 	player = new Player(0, 0);
 	this->player->setXPos(this->window->getWidth() / 2 - (this->player->getWidth() / 2));
-	this->player->setYPos(this->window->getHeight() - (this->player->getHeight() + 16));
+	this->player->setYPos(Configuration::getScreenHeight() - (this->player->getHeight() + 64));
 	this->run();
 }
 
@@ -104,7 +102,7 @@ bool Game::checkGameOver()
 {
 	for each(GenericEnemy* enemy in this->enemies)
 	{
-		short endZone = ConfigurationManager::getScreenHeight() * 3 / 4 - enemy->getHeight();
+		short endZone = Configuration::getScreenHeight() * 3 / 4 - enemy->getHeight();
 		if (enemy->getYPos() >= endZone)
 		{
 			return true;
@@ -123,7 +121,6 @@ void Game::checkKills()
 
 		for (int enemyIndex = 0; enemyIndex < enemies.size(); enemyIndex++)
 		{
-
 			GenericEnemy* enemy = this->enemies.at(enemyIndex);
 
 			if (blast->checkCollision(enemy))
