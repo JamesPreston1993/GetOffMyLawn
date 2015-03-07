@@ -4,7 +4,7 @@
 #include "Neighbour.h"
 #include "Dog.h"
 #include "Salesman.h"
-#include "ConfigurationManager.h"
+#include "Configuration.h"
 
 class EnemyGenerator
 {
