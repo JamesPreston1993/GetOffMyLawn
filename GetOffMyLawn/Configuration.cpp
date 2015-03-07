@@ -2,12 +2,12 @@
 
 unsigned short Configuration::getScreenWidth()
 {
-	return 720;
+	return 600;
 }
 
 unsigned short Configuration::getScreenHeight()
 {
-	return 900;
+	return 800;
 }
 
 unsigned short Configuration::getSpriteWidth()
