@@ -26,21 +26,13 @@ void Window::setup()
 	this->renderer = SDL_CreateRenderer(this->window, 0, SDL_RENDERER_ACCELERATED);
 
 	// Load background
-	SDL_Surface* bkFile = IMG_Load("Images/grass.png");
-	if (bkFile == NULL)
-		SDL_ShowSimpleMessageBox(NULL, "ERROR: Loading png", SDL_GetError(), this->window);
-	this->background = SDL_CreateTextureFromSurface(this->renderer, bkFile);
-	if (background == NULL)
-		SDL_ShowSimpleMessageBox(NULL, "ERROR: Loading sprite sheet", SDL_GetError(), this->window);
+	SDL_Surface* bkFile = IMG_Load("Images/grass.png");	
+	this->background = SDL_CreateTextureFromSurface(this->renderer, bkFile);	
 	SDL_FreeSurface(bkFile);
 
 	// Load spritesheet
-	SDL_Surface* imgFile = IMG_Load("Images/spriteSheet.png");
-	if (imgFile == NULL)
-		SDL_ShowSimpleMessageBox(NULL, "ERROR: Loading png", SDL_GetError(), this->window);
-	this->spritesheet = SDL_CreateTextureFromSurface(this->renderer, imgFile);
-	if (spritesheet == NULL)
-		SDL_ShowSimpleMessageBox(NULL, "ERROR: Loading sprite sheet", SDL_GetError(), this->window);
+	SDL_Surface* imgFile = IMG_Load("Images/spriteSheet.png");	
+	this->spritesheet = SDL_CreateTextureFromSurface(this->renderer, imgFile);	
 	SDL_FreeSurface(imgFile);
 
 	// Refresh
@@ -75,37 +67,42 @@ void Window::drawBackground()
 	background->w = this->winWidth;
 	background->h = this->winHeight;
 	SDL_RenderCopy(this->renderer, this->background, NULL, background);
+	delete background;
 }
 
 void Window::drawGUI(unsigned short score)
 {
-	unsigned short scaleX = 64;
-	unsigned short scaleY = 64;
+	unsigned short scaleX = 48;
+	unsigned short scaleY = 48;
 
-	// Format the scoreboard
+	// Format the scoreboard		
 	if (score < 10)
-		scaleX = 64;
+		scaleX = scaleX;
 	else if (score < 100)
-		scaleX = 128;
+		scaleX *= 2;
 	else if (score < 1000)
-		scaleX = 192;
-	else
-		scaleX = 256;
+		scaleX *= 3;
+	else if (score < 10000)
+		scaleX *= 4;	
 
 	TTF_Font* font = TTF_OpenFont("Fonts/DSAccent.ttf", 64);
 	SDL_Color colour = { 255, 255, 255 };
 
-	SDL_Surface* surface = TTF_RenderText_Blended(font, std::to_string(score).c_str(), colour);
+	SDL_Surface* surface = TTF_RenderText_Blended(font, std::to_string(score).c_str(), colour);	
 
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(this->renderer, surface);
 
 	SDL_Rect* scoreBoard = new SDL_Rect();
-	scoreBoard->x = this->winWidth - scaleX;
-	scoreBoard->y = 0;
+	scoreBoard->x = 8;
+	scoreBoard->y = this->winHeight - scaleY;
 	scoreBoard->w = scaleX;
 	scoreBoard->h = scaleY;
 
 	SDL_RenderCopy(this->renderer, texture, NULL, scoreBoard);
+
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(texture);
+	delete scoreBoard;
 
 	TTF_CloseFont(font);
 }
