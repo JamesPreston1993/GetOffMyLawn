@@ -60,7 +60,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)/Dependencies/SDL2-2.0.3/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;OpenGL32.lib;SDL2_ttf.lib;sdl2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -78,7 +78,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)/Dependencies/SDL2-2.0.3/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -86,7 +86,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ConfigurationManager.h" />
+    <ClInclude Include="Configuration.h" />
     <ClInclude Include="Dog.h" />
     <ClInclude Include="EnemyGenerator.h" />
     <ClInclude Include="Entity.h" />
@@ -100,7 +100,7 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConfigurationManager.cpp" />
+    <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="Dog.cpp" />
     <ClCompile Include="EnemyGenerator.cpp" />
     <ClCompile Include="Entity.cpp" />
