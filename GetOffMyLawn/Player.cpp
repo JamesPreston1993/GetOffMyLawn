@@ -3,6 +3,7 @@
 Player::Player(short x, short y) : Entity(x, y, 96, 128)
 {
 	this->setSpriteID(0);
+	this->setCastShadow(true);
 	this->animState = AnimState::IDLE;
 	this->shootTimer = 0;
 }
@@ -74,12 +75,27 @@ void Player::update()
 void Player::draw(SDL_Renderer* renderer, SDL_Texture* texture)
 {
 	SDL_Rect* sourceRect = new SDL_Rect();
+	SDL_Rect* destRect = new SDL_Rect();
+
+	// Draw the shadow
+	sourceRect->x = 0;
+	sourceRect->y = 6 * Configuration::getSpriteHeight();
+	sourceRect->w = this->getWidth();
+	sourceRect->h = 48;
+
+	destRect->x = this->getXPos();
+	destRect->y = this->getYPos() + (this->getHeight() - (48 / 2));
+	destRect->w = this->getWidth();
+	destRect->h = 48;
+
+	SDL_RenderCopy(renderer, texture, sourceRect, destRect);	
+	
+	// Draw the sprite based on the animation state
 	sourceRect->x = (SDL_GetTicks() / 500 % 2) * this->getWidth();
 	sourceRect->y = (this->animState + this->getSpriteID()) * this->getHeight();
 	sourceRect->w = this->getWidth();
 	sourceRect->h = this->getHeight();
 
-	SDL_Rect* destRect = new SDL_Rect();
 	destRect->x = this->getXPos();
 	destRect->y = this->getYPos();
 	destRect->w = this->getWidth();
