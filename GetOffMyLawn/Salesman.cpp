@@ -3,7 +3,7 @@
 Salesman::Salesman(short x, short y) : GenericEnemy(x, y)
 {
 	this->setSpriteID(3);
-	this->setSpeed(4);
+	this->setSpeed(5);
 	this->setPoints(20);
 	this->setHealth(3);
 }

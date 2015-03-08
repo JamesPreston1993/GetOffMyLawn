@@ -3,7 +3,7 @@
 Neighbour::Neighbour(short x, short y) : GenericEnemy(x, y)
 {
 	this->setSpriteID(2);
-	this->setSpeed(6);
+	this->setSpeed(7);
 	this->setPoints(5);
 	this->setHealth(1);
 }
